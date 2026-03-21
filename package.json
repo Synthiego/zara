@@ -1,0 +1,14 @@
+{
+  "name": "zara-discord-bot",
+  "version": "1.0.0",
+  "description": "Zara — a Discord chatbot powered by Claude",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "discord.js": "^14.16.0"
+  }
+}
