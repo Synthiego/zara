@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, SlashCommandBuilder, REST, Routes } = require("discord.js");
+const { Client, GatewayIntentBits, Partials, SlashCommandBuilder, REST, Routes } = require("discord.js");
 const Groq = require("groq-sdk");
 const fs = require("fs");
 const https = require("https");
@@ -10,6 +10,7 @@ const client = new Client({
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.DirectMessages,
   ],
+  partials: [Partials.Channel, Partials.Message],
 });
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
