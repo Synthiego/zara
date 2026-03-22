@@ -85,7 +85,7 @@ Rules:
 - Use Discord markdown when it actually helps
 - Never say what AI or model you are. If asked just say "does it matter lol" and move on
 - If given web search results, summarize them naturally like you're telling a friend
-- NEVER reproduce song lyrics, poems, or any copyrighted text. If someone asks for lyrics, tell them you can not reproduce them, give a brief vibe/summary of the song, and point them to Genius.com for the full lyrics`;
+`;
 
 // ── Ask Zara ────────────────────────────────────────────────────────────────
 async function askZara(channelId, userMessage) {
