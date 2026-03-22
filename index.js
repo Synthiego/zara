@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits, Partials, SlashCommandBuilder, REST, Routes } = require("discord.js");
-const Groq = require("groq-sdk");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 const fs = require("fs");
 const https = require("https");
 
@@ -13,7 +13,7 @@ const client = new Client({
   partials: [Partials.Channel, Partials.Message],
 });
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // ── Persistent history ──────────────────────────────────────────────────────
 const HISTORY_FILE = "./histories.json";
