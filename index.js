@@ -103,17 +103,19 @@ async function askZara(channelId, userMessage) {
   history.push({ role: "user", content: messageWithContext });
   if (history.length > MAX_HISTORY) history.splice(0, history.length - MAX_HISTORY);
 
-  const response = await groq.chat.completions.create({
-    model: "llama-3.3-70b-versatile",
-    max_tokens: 1024,
-    temperature: 0.85,
-    messages: [
-      { role: "system", content: SYSTEM_PROMPT },
-      ...history,
-    ],
+  const model = genAI.getGenerativeModel({
+    model: "gemini-1.5-pro",
+    systemInstruction: SYSTEM_PROMPT,
   });
 
-  const reply = response.choices[0].message.content;
+  const geminiHistory = history.slice(0, -1).map(m => ({
+    role: m.role === "assistant" ? "model" : "user",
+    parts: [{ text: m.content }],
+  }));
+
+  const chat = model.startChat({ history: geminiHistory });
+  const result = await chat.sendMessage(messageWithContext);
+  const reply = result.response.text();
   // Store reply without search context to keep history clean
   history[history.length - 1] = { role: "user", content: userMessage };
   history.push({ role: "assistant", content: reply });
